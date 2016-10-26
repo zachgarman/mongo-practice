@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="meanApp">
+<head>
+  <meta charset="utf-8">
+  <title>MEAN Stack!</title>
+
+  <script src="vendors/angular.min.js"></script>
+
+  <script src="scripts/module.js"></script>
+  <script src="scripts/people.controller.js"></script>
+
+  <link rel="stylesheet" href="vendors/bootstrap.min.css" />
+</head>
+
+
+<body ng-controller="PeopleController as ctrl">
+  <main class="container">
+    <div class="row">
+      <div class="col-md-12 title">
+        <h1 class="center-block" style="width: 300px">A List of Peeps!</h1>
+      </div>
+      <div class="col-md-6 left">
+        <button class="btn btn-block btn-lg btn-danger" ng-click="ctrl.listPeople()">Get the Full List!</button>
+        <div class="form-group">
+          <h3>New Entry:</h3>
+          <form name="myForm">
+            <label for="name">Name: </label>
+            <input name="name" class="form-control" type="text" ng-model="ctrl.name" placeholder="Enter a new name" required="true" />
+            <label for="hometown">Hometown: </label>
+            <input name="hometown"class="form-control" type="text" ng-model="ctrl.hometown" placeholder="Enter a new hometown" required />
+            <label for="movie">Favorite Movie: </label>
+            <input name="movie"class="form-control" type="text" ng-model="ctrl.favoriteMovie" placeholder="Enter a favorite movie" required />
+            <button ng-disabled="!myForm.$valid" type="submit" class="btn btn-info btn-block" ng-click="ctrl.addPerson()">Add Person</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6 right">
+        <span>Sort Results By: </span>
+        <select ng-model="ctrl.sortBy">
+          <option value="">
+          <option value="name">Name
+          <option value="hometown">Hometown
+          <option value="favoriteMovie">Favorite Movie
+        </select>
+        <ul>
+          <li ng-repeat="person in ctrl.people">
+            <p>{{ person.name }}<span> -- {{ person.hometown }}</span></p>
+            <p>Favorite Movie: {{ person.favoriteMovie }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
