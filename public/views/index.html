@@ -10,6 +10,7 @@
   <script src="scripts/people.controller.js"></script>
 
   <link rel="stylesheet" href="vendors/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles/styles.css" />
 </head>
 
 
@@ -34,17 +35,18 @@
           </form>
         </div>
       </div>
+
       <div class="col-md-6 right">
         <span>Sort Results By: </span>
-        <select ng-model="ctrl.sortBy">
-          <option value="">
+        <select ng-change="ctrl.sortList()" ng-model="ctrl.sortBy">
           <option value="name">Name
           <option value="hometown">Hometown
           <option value="favoriteMovie">Favorite Movie
         </select>
-        <ul>
-          <li ng-repeat="person in ctrl.people">
-            <p>{{ person.name }}<span> -- {{ person.hometown }}</span></p>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="person in ctrl.people | orderBy: ctrl.sortList()">
+            <p><strong>{{ person.name }}</strong></p>
+            <p><em>Hometown: {{ person.hometown }}</em></p>
             <p>Favorite Movie: {{ person.favoriteMovie }}</p>
           </li>
         </ul>

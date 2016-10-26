@@ -1,1 +1,3 @@
-
+body {
+  background: linear-gradient(to right, yellow 1%, teal 10%, teal 89%, yellow 99%);
+};

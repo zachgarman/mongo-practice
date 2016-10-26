@@ -6,6 +6,11 @@ function PeopleController ($http) {
 
   var self = this;
   self.people = [];
+  self.sortBy = 'name';
+
+  self.sortList = function() {
+    return self.sortBy;
+  };
 
   self.clearForm = function() {
     self.name = '';
@@ -14,7 +19,6 @@ function PeopleController ($http) {
   };
 
   self.listPeople = function () {
-    console.log('Listing peeps');
     $http.get('/people').then(function(response) {
       console.log('response', response);
       self.people = response.data;
@@ -36,4 +40,5 @@ function PeopleController ($http) {
       self.listPeople();
     });
   };
+
 }
